@@ -1,0 +1,5 @@
+node_modules/
+.venv/
+*.mjs
+package*.json
+headshot_cropped.jpg
