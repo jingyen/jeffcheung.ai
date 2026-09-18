@@ -1,0 +1,65 @@
+<!--
+  jeffcheung.ai — hero wordmark, CSS-only typewriter reveal
+  Drop this markup wherever the hero/header wordmark goes.
+  Requires IBM Plex Mono loaded on the page (Google Fonts import below,
+  or self-hosted — either is fine).
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #14171A;
+    --paper: #F3F4F2;
+    --signal: #1F6E66;
+  }
+
+  .jc-wordmark {
+    display: inline-flex;
+    align-items: baseline;
+    font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+    font-weight: 500;
+    font-size: 64px;
+    letter-spacing: -1px;
+  }
+
+  .jc-wordmark__type {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: bottom;
+    animation: jc-type-reveal 1.4s steps(13) 0.3s both;
+  }
+
+  .jc-wordmark__cursor {
+    display: inline-block;
+    width: 13px;
+    height: 0.8em;
+    background: var(--signal);
+    margin-left: 6px;
+    transform: translateY(0.06em);
+    animation: jc-cursor-blink 0.9s step-end infinite;
+  }
+
+  @keyframes jc-type-reveal {
+    from { width: 0; }
+    to   { width: 13ch; }
+  }
+
+  @keyframes jc-cursor-blink {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0; }
+  }
+
+  /* respect reduced-motion: show the full mark immediately, keep the cursor still */
+  @media (prefers-reduced-motion: reduce) {
+    .jc-wordmark__type { animation: none; width: 13ch; }
+    .jc-wordmark__cursor { animation: none; opacity: 1; }
+  }
+</style>
+
+<div class="jc-wordmark">
+  <span class="jc-wordmark__type" style="color: var(--ink);">jeffcheung<span style="color: var(--signal);">.ai</span></span><span class="jc-wordmark__cursor"></span>
+</div>
