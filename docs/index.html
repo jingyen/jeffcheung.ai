@@ -105,11 +105,13 @@
     }
     .nav-links a:hover { color: var(--text-primary); }
     .nav-cta {
-      font-size: 0.8125rem; font-weight: 600; color: var(--cta-text);
+      font-size: 0.8125rem; font-weight: 600; color: #000;
       background: var(--accent); padding: 8px 20px; border-radius: 8px;
       text-decoration: none; transition: all 0.2s;
     }
     .nav-cta:hover { background: var(--accent-light); box-shadow: 0 0 20px var(--accent-glow-strong); }
+    [data-theme="light"] .nav-cta { color: #fff; background: #0d9488; }
+    [data-theme="light"] .nav-cta:hover { background: #0f766e; }
 
     /* ── THEME TOGGLE ── */
     .theme-toggle {
