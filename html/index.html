@@ -44,10 +44,9 @@
 
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--nav-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); transition: background 0.3s; }
     nav .container { display: flex; align-items: center; justify-content: space-between; height: 64px; padding: 0 24px; max-width: 1120px; margin: 0 auto; }
-    .nav-wordmark { display: flex; align-items: center; text-decoration: none; }
-    .nav-wordmark img { height: 24px; width: auto; }
-    [data-theme="dark"] .wm-light { display: none; } [data-theme="dark"] .wm-dark { display: block; }
-    [data-theme="light"] .wm-light { display: block; } [data-theme="light"] .wm-dark { display: none; }
+    .nav-wordmark { display: flex; align-items: center; text-decoration: none; font-family: 'IBM Plex Mono', monospace; font-weight: 500; font-size: 1.05rem; letter-spacing: -0.5px; color: var(--text-primary); }
+    .nav-wordmark .ai { color: var(--accent); }
+    .nav-cursor { display: inline-block; width: 8px; height: 1em; background: var(--accent); margin-left: 4px; animation: jc-cursor-blink 0.9s step-end infinite; }
     .nav-links { display: flex; gap: 28px; align-items: center; }
     .nav-links a { font-size: 0.875rem; font-weight: 400; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--text-primary); }
@@ -152,7 +151,7 @@
 <body>
   <div class="glow-wrap"><div class="glow-orb a"></div><div class="glow-orb b"></div></div>
   <nav><div class="container">
-    <a href="#" class="nav-wordmark"><img src="wordmark-dark.svg" alt="jeffcheung.ai" class="wm-dark"><img src="wordmark.svg" alt="jeffcheung.ai" class="wm-light"></a>
+    <a href="#" class="nav-wordmark">jeffcheung<span class="ai">.ai</span><span class="nav-cursor"></span></a>
     <div class="nav-links">
       <a href="#services">Services</a><a href="#results">Results</a><a href="#about">About</a>
       <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light mode">
