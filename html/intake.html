@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Assessment | jeffcheung.ai</title>
+  <meta name="description" content="Take the AI Assessment from Jeff Cheung. 2 minutes to help us skip the basics and get straight to what matters for your business.">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="icon-96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root, [data-theme="dark"] {
+      --bg-deep: #0e1011; --bg-panel: #141617; --bg-surface: #1a1c1e; --bg-elevated: #202224;
+      --text-primary: #ececed; --text-secondary: #a8a9ae; --text-muted: #6b6c72;
+      --accent: #2dd4bf; --accent-glow: rgba(45,212,191,0.10); --accent-glow-strong: rgba(45,212,191,0.20);
+      --green: #10b981; --green-dim: rgba(16,185,129,0.10);
+      --border: rgba(255,255,255,0.08); --nav-bg: rgba(14,16,17,0.88);
+      --card-hover-border: rgba(45,212,191,0.25);
+    }
+    [data-theme="light"] {
+      --bg-deep: #F3F4F2; --bg-panel: #ffffff; --bg-surface: #eaeae8; --bg-elevated: #e0e0de;
+      --text-primary: #14171A; --text-secondary: #3a3e42; --text-muted: #6b7178;
+      --accent: #1F6E66; --accent-glow: rgba(31,110,102,0.08); --accent-glow-strong: rgba(31,110,102,0.15);
+      --green: #059669; --green-dim: rgba(5,150,105,0.08);
+      --border: rgba(0,0,0,0.08); --nav-bg: rgba(243,244,242,0.88);
+      --card-hover-border: rgba(31,110,102,0.3);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'IBM Plex Sans', system-ui, sans-serif; color: var(--text-primary); background: var(--bg-deep); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; transition: background 0.3s, color 0.3s; }
+    .glow-wrap { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .glow-orb { position: absolute; border-radius: 50%; opacity: 0.3; }
+    .glow-orb.a { width: 600px; height: 600px; top: -180px; left: -100px; background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%); }
+    .glow-orb.b { width: 500px; height: 500px; bottom: 20%; right: -120px; background: radial-gradient(circle, rgba(16,185,129,0.05) 0%, transparent 70%); }
+    .page { position: relative; z-index: 1; }
+    .container { max-width: 1120px; margin: 0 auto; }
+    h1, h2, h3, .stat-num, .sh-tag { font-family: 'IBM Plex Mono', monospace; }
+
+    /* Nav */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--nav-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); transition: background 0.3s; }
+    nav .container { display: flex; align-items: center; justify-content: space-between; height: 64px; padding: 0 24px; max-width: 1120px; margin: 0 auto; }
+    .nav-wordmark { display: flex; align-items: center; text-decoration: none; font-family: 'IBM Plex Mono', monospace; font-weight: 500; font-size: 1.05rem; letter-spacing: -0.5px; color: var(--text-primary); }
+    .nav-wordmark .ai { color: var(--accent); }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { font-size: 0.875rem; font-weight: 400; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-cta { font-family: 'IBM Plex Mono', monospace; font-size: 0.8125rem; font-weight: 600; color: #000; background: var(--accent); padding: 8px 20px; border-radius: 8px; text-decoration: none; transition: all 0.2s; }
+    .nav-cta:hover { box-shadow: 0 0 20px var(--accent-glow-strong); }
+    [data-theme="light"] .nav-cta { color: #fff; background: #1F6E66; }
+    [data-theme="light"] .nav-cta:hover { background: #185c55; }
+
+    .theme-toggle { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 6px 8px; cursor: pointer; color: var(--text-muted); display: flex; align-items: center; justify-content: center; transition: color 0.2s, border-color 0.2s; }
+    .theme-toggle:hover { color: var(--text-primary); border-color: var(--accent); }
+    .theme-toggle svg { width: 16px; height: 16px; }
+    .theme-toggle .icon-sun { display: none; } .theme-toggle .icon-moon { display: block; }
+    [data-theme="light"] .theme-toggle .icon-sun { display: block; } [data-theme="light"] .theme-toggle .icon-moon { display: none; }
+
+    /* Hero */
+    .hero { padding: 140px 24px 60px; text-align: center; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 16px; }
+    .hero-subtitle { font-size: clamp(0.95rem, 2vw, 1.1rem); color: var(--text-secondary); max-width: 600px; margin: 0 auto; line-height: 1.7; }
+
+    /* Form */
+    .form-section { padding: 0 24px 100px; }
+    .form-card { max-width: 720px; margin: 0 auto; background: var(--bg-panel); border: 1px solid var(--border); border-radius: 14px; padding: 40px 36px; transition: background 0.3s; }
+    .form-group { margin-bottom: 36px; }
+    .form-group:last-of-type { margin-bottom: 40px; }
+    .form-group label, .form-group .group-label { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; color: var(--text-primary); }
+    .form-group .group-label .q-num { color: var(--accent); margin-right: 6px; }
+    .form-group .microcopy { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 14px; line-height: 1.5; }
+
+    .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .input-row .input-col { display: flex; flex-direction: column; }
+    .input-row .input-col label { font-family: 'IBM Plex Sans', sans-serif; font-size: 0.8rem; font-weight: 500; color: var(--text-muted); margin-bottom: 4px; }
+
+    input[type="text"], input[type="email"], textarea {
+      width: 100%; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 12px 16px; font-family: 'IBM Plex Sans', sans-serif; font-size: 0.9rem;
+      color: var(--text-primary); transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+    }
+    input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+      border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+    input[type="text"]::placeholder, input[type="email"]::placeholder, textarea::placeholder { color: var(--text-muted); opacity: 0.6; }
+    textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+
+    /* Radio & Checkbox */
+    .radio-group, .checkbox-group { display: flex; flex-direction: column; gap: 8px; }
+    .radio-option, .checkbox-option {
+      display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+      background: var(--bg-surface); border: 1px solid var(--border); border-radius: 10px;
+      cursor: pointer; transition: border-color 0.2s, background 0.2s;
+    }
+    .radio-option:hover, .checkbox-option:hover { border-color: var(--card-hover-border); }
+    .radio-option.selected, .checkbox-option.selected { border-color: var(--accent); background: var(--accent-glow); }
+
+    .radio-option input[type="radio"], .checkbox-option input[type="checkbox"] {
+      appearance: none; -webkit-appearance: none; width: 18px; height: 18px; border: 2px solid var(--text-muted);
+      border-radius: 50%; flex-shrink: 0; transition: all 0.2s; position: relative; cursor: pointer;
+    }
+    .checkbox-option input[type="checkbox"] { border-radius: 5px; }
+    .radio-option input[type="radio"]:checked, .checkbox-option input[type="checkbox"]:checked {
+      border-color: var(--accent); background: var(--accent);
+    }
+    .radio-option input[type="radio"]:checked::after {
+      content: ''; position: absolute; width: 6px; height: 6px; background: #000;
+      border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    }
+    [data-theme="light"] .radio-option input[type="radio"]:checked::after { background: #fff; }
+    .checkbox-option input[type="checkbox"]:checked::after {
+      content: '✓'; position: absolute; color: #000; font-size: 12px; font-weight: 700;
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+    }
+    [data-theme="light"] .checkbox-option input[type="checkbox"]:checked::after { color: #fff; }
+    .radio-option span, .checkbox-option span { font-size: 0.875rem; color: var(--text-secondary); }
+
+    .other-input { margin-top: 8px; }
+    .other-input input { width: 100%; }
+
+    /* Counter */
+    .selection-counter {
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; font-weight: 500;
+      color: var(--text-muted); margin-top: 8px;
+    }
+    .selection-counter .count { color: var(--accent); }
+    .selection-counter.at-max .count { color: var(--green); }
+
+    /* Submit */
+    .submit-btn {
+      display: inline-flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.95rem; font-weight: 600; color: #000; background: var(--accent);
+      padding: 16px 36px; border-radius: 10px; border: none; cursor: pointer;
+      transition: all 0.25s; box-shadow: 0 0 30px var(--accent-glow); width: 100%;
+      justify-content: center;
+    }
+    .submit-btn:hover { box-shadow: 0 0 50px var(--accent-glow-strong); transform: translateY(-1px); }
+    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+    [data-theme="light"] .submit-btn { color: #fff; background: #1F6E66; }
+    [data-theme="light"] .submit-btn:hover { background: #185c55; }
+    .submit-btn svg { width: 18px; height: 18px; }
+
+    /* Messages */
+    .form-message { text-align: center; padding: 16px; border-radius: 10px; margin-top: 16px; font-size: 0.9rem; display: none; }
+    .form-message.error { display: block; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #ef4444; }
+    .form-message.success { display: block; background: var(--green-dim); border: 1px solid rgba(16,185,129,0.3); color: var(--green); }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; font-size: 0.8125rem; color: var(--text-muted); }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      nav { backdrop-filter: none; -webkit-backdrop-filter: none; background: var(--bg-deep); }
+      .glow-wrap { display: none; }
+      .nav-links a:not(.nav-cta):not(.theme-toggle) { display: none; }
+      .hero { padding: 120px 20px 40px; }
+      .form-section { padding: 0 16px 60px; }
+      .form-card { padding: 28px 20px; }
+      .input-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow-wrap"><div class="glow-orb a"></div><div class="glow-orb b"></div></div>
+  <nav><div class="container">
+    <a href="index.html" class="nav-wordmark">jeffcheung<span class="ai">.ai</span></a>
+    <div class="nav-links">
+      <a href="index.html#services">Services</a><a href="index.html#results">Results</a><a href="index.html#about">About</a>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light mode">
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 8.002-4.248Z"/></svg>
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
+      </button>
+      <a href="https://cal.com/jeffcheung" class="nav-cta">Book a Call</a>
+    </div>
+  </div></nav>
+  <div class="page">
+    <section class="hero"><div class="container">
+      <h1>AI Assessment</h1>
+      <p class="hero-subtitle">Takes about 2 minutes.  I'll review this before our call so we can skip the basics and get straight to what matters.</p>
+    </div></section>
+
+    <section class="form-section"><div class="form-card">
+      <form id="intake-form" novalidate>
+
+        <!-- Q1: Your info -->
+        <div class="form-group">
+          <div class="group-label"><span class="q-num">01</span> Your info</div>
+          <div class="input-row" style="margin-top:12px;">
+            <div class="input-col">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required placeholder="Jane Smith">
+            </div>
+            <div class="input-col">
+              <label for="company">Company</label>
+              <input type="text" id="company" name="company" required placeholder="Acme Corp">
+            </div>
+          </div>
+          <div class="input-row" style="margin-top:12px;">
+            <div class="input-col">
+              <label for="role">Role / Title</label>
+              <input type="text" id="role" name="role" placeholder="Operations Manager">
+            </div>
+            <div class="input-col">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required placeholder="jane@acme.com">
+            </div>
+          </div>
+        </div>
+
+        <!-- Q2: Company size -->
+        <div class="form-group">
+          <div class="group-label"><span class="q-num">02</span> How many people work at your company?</div>
+          <div class="radio-group" style="margin-top:12px;">
+            <label class="radio-option"><input type="radio" name="company_size" value="1-10"><span>1 - 10</span></label>
+            <label class="radio-option"><input type="radio" name="company_size" value="11-25"><span>11 - 25</span></label>
+            <label class="radio-option"><input type="radio" name="company_size" value="26-50"><span>26 - 50</span></label>
+            <label class="radio-option"><input type="radio" name="company_size" value="51-100"><span>51 - 100</span></label>
+            <label class="radio-option"><input type="radio" name="company_size" value="100+"><span>100+</span></label>
+          </div>
+        </div>
+
+        <!-- Q3: Industry -->
+        <div class="form-group">
+          <div class="group-label"><span class="q-num">03</span> What industry are you in?</div>
+          <div class="radio-group" style="margin-top:12px;">
+            <label class="radio-option"><input type="radio" name="industry" value="Marketing / Agency"><span>Marketing / Agency</span></label>
+            <label class="radio-option"><input type="radio" name="industry" value="Real Estate / Property Management"><span>Real Estate / Property Management</span></label>
+            <label class="radio-option"><input type="radio" name="industry" value="Financial Services"><span>Financial Services</span></label>
+            <label class="radio-option"><input type="radio" name="industry" value="Healthcare / Wellness"><span>Healthcare / Wellness</span></label>
+            <label class="radio-option"><input type="radio" name="industry" value="Professional Services"><span>Professional Services</span></label>
+            <label class="radio-option"><input type="radio" name="industry" value="E-commerce / Retail"><span>E-commerce / Retail</span></label>
+            <label class="radio-option"><input type="radio" name="industry" value="Construction / Trades"><span>Construction / Trades</span></label>
+            <label class="radio-option"><input type="radio" name="industry" value="Other"><span>Other</span></label>
+          </div>
+          <div class="other-input" id="industry-other-wrap" style="display:none;">
+            <input type="text" id="industry_other" name="industry_other" placeholder="Tell me your industry">
+          </div>
+        </div>
+
+        <!-- Q4: Tools -->
+        <div class="form-group">
+          <div class="group-label"><span class="q-num">04</span> What tools does your team use daily?</div>
+          <p class="microcopy">Select all that apply.</p>
+          <div class="checkbox-group" style="margin-top:4px;">
+            <label class="checkbox-option"><input type="checkbox" name="tools" value="Google Workspace"><span>Google Workspace</span></label>
+            <label class="checkbox-option"><input type="checkbox" name="tools" value="Microsoft 365"><span>Microsoft 365</span></label>
+            <label class="checkbox-option"><input type="checkbox" name="tools" value="Slack"><span>Slack</span></label>
+            <label class="checkbox-option"><input type="checkbox" name="tools" value="QuickBooks / Xero"><span>QuickBooks / Xero</span></label>
+            <label class="checkbox-option"><input type="checkbox" name="tools" value="Salesforce"><span>Salesforce</span></label>
+            <label class="checkbox-option"><input type="checkbox" name="tools" value="HubSpot"><span>HubSpot</span></label>
+            <label class="checkbox-option"><input type="checkbox" name="tools" value="Trello / Asana / Monday"><span>Trello / Asana / Monday</span></label>
+            <label class="checkbox-option"><input type="checkbox" name="tools" value="Custom or industry-specific software"><span>Custom or industry-specific software</span></label>
+          </div>
+          <div class="other-input" id="tools-other-wrap" style="display:none;">
+            <input type="text" id="tools_other" name="tools_other" placeholder="What software?">
+          </div>
+        </div>
+
+        <!-- Q5: Biggest time sink -->
+        <div class="form-group">
+          <div class="group-label"><span class="q-num">05</span> What's the ONE task that eats the most time in your business?</div>
+          <p class="microcopy">One sentence.  Don't overthink it.  Whatever came to mind first is probably the right answer.</p>
+          <textarea id="biggest_time_sink" name="biggest_time_sink" placeholder="e.g. Formatting weekly reports from three different systems"></textarea>
+        </div>
+
+        <!-- Q6: Wasted time areas (max 3) -->
+        <div class="form-group">
+          <div class="group-label"><span class="q-num">06</span> Where does your team's time feel most wasted?</div>
+          <p class="microcopy">Select up to 3.</p>
+          <div class="checkbox-group" id="wasted-time-group" style="margin-top:4px;">
+            <label class="checkbox-option"><input type="checkbox" name="wasted_time" value="Email"><span>Email</span></label>
+            <label class="checkbox-option"><input type="checkbox" name="wasted_time" value="Data entry"><span>Data entry</span></label>
+            <label class="checkbox-option"><input type="checkbox" name="wasted_time" value="Reporting"><span>Reporting</span></label>
+            <label class="checkbox-option"><input type="checkbox" name="wasted_time" value="Scheduling"><span>Scheduling</span></label>
+            <label class="checkbox-option"><input type="checkbox" name="wasted_time" value="Document handling"><span>Document handling</span></label>
+            <label class="checkbox-option"><input type="checkbox" name="wasted_time" value="Client communication"><span>Client communication</span></label>
+            <label class="checkbox-option"><input type="checkbox" name="wasted_time" value="Internal communication"><span>Internal communication</span></label>
+            <label class="checkbox-option"><input type="checkbox" name="wasted_time" value="Searching for information"><span>Searching for information</span></label>
+            <label class="checkbox-option"><input type="checkbox" name="wasted_time" value="Development / tech"><span>Development / tech</span></label>
+          </div>
+          <div class="selection-counter" id="wasted-counter"><span class="count">0</span>/3 selected</div>
+        </div>
+
+        <!-- Q7: AI experience -->
+        <div class="form-group">
+          <div class="group-label"><span class="q-num">07</span> Has your team tried using AI tools?</div>
+          <div class="radio-group" style="margin-top:12px;">
+            <label class="radio-option"><input type="radio" name="ai_experience" value="No, haven't tried"><span>No, haven't tried</span></label>
+            <label class="radio-option"><input type="radio" name="ai_experience" value="Played with ChatGPT but nothing stuck"><span>Played with ChatGPT but nothing stuck</span></label>
+            <label class="radio-option"><input type="radio" name="ai_experience" value="Using AI for some tasks already"><span>Using AI for some tasks already</span></label>
+            <label class="radio-option"><input type="radio" name="ai_experience" value="Tried it seriously and gave up"><span>Tried it seriously and gave up</span></label>
+          </div>
+        </div>
+
+        <!-- Q8: Magic wand -->
+        <div class="form-group">
+          <div class="group-label"><span class="q-num">08</span> If AI could fix ONE thing in your business tomorrow, what would it be?</div>
+          <p class="microcopy">Open-ended.  Dream big or keep it practical; both help.</p>
+          <textarea id="magic_wand" name="magic_wand" placeholder="e.g. Automatically follow up with every lead that goes cold"></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submit-btn">
+          Submit &amp; Book Your Free Assessment
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+        </button>
+        <div class="form-message" id="form-message"></div>
+      </form>
+    </div></section>
+
+    <footer><div class="container">&copy; 2026 Jeff Cheung. All rights reserved.</div></footer>
+  </div>
+
+  <script>
+    // Theme toggle (shared with index.html)
+    function toggleTheme(){const h=document.documentElement;const n=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',n);localStorage.setItem('theme',n);}
+    (function(){const s=localStorage.getItem('theme');if(s){document.documentElement.setAttribute('data-theme',s);}else if(window.matchMedia('(prefers-color-scheme:light)').matches){document.documentElement.setAttribute('data-theme','light');}})();
+
+    // Radio visual selection
+    document.querySelectorAll('.radio-option input[type="radio"]').forEach(function(r){
+      r.addEventListener('change', function(){
+        this.closest('.radio-group').querySelectorAll('.radio-option').forEach(function(o){ o.classList.remove('selected'); });
+        this.closest('.radio-option').classList.add('selected');
+      });
+    });
+
+    // Checkbox visual selection
+    document.querySelectorAll('.checkbox-option input[type="checkbox"]').forEach(function(c){
+      c.addEventListener('change', function(){
+        if(this.checked){ this.closest('.checkbox-option').classList.add('selected'); }
+        else { this.closest('.checkbox-option').classList.remove('selected'); }
+      });
+    });
+
+    // Industry "Other" toggle
+    document.querySelectorAll('input[name="industry"]').forEach(function(r){
+      r.addEventListener('change', function(){
+        document.getElementById('industry-other-wrap').style.display = this.value === 'Other' ? 'block' : 'none';
+      });
+    });
+
+    // Tools "Custom" toggle
+    document.querySelector('input[name="tools"][value="Custom or industry-specific software"]').addEventListener('change', function(){
+      document.getElementById('tools-other-wrap').style.display = this.checked ? 'block' : 'none';
+    });
+
+    // Max 3 enforcement for wasted time
+    var wastedGroup = document.getElementById('wasted-time-group');
+    var wastedCounter = document.getElementById('wasted-counter');
+    wastedGroup.addEventListener('change', function(){
+      var checked = wastedGroup.querySelectorAll('input[type="checkbox"]:checked');
+      var count = checked.length;
+      var unchecked = wastedGroup.querySelectorAll('input[type="checkbox"]:not(:checked)');
+      unchecked.forEach(function(cb){ cb.disabled = count >= 3; cb.closest('.checkbox-option').style.opacity = count >= 3 ? '0.4' : '1'; });
+      wastedCounter.innerHTML = '<span class="count">' + count + '</span>/3 selected';
+      wastedCounter.className = 'selection-counter' + (count >= 3 ? ' at-max' : '');
+    });
+
+    // Form submission
+    document.getElementById('intake-form').addEventListener('submit', function(e){
+      e.preventDefault();
+      var btn = document.getElementById('submit-btn');
+      var msg = document.getElementById('form-message');
+      msg.className = 'form-message'; msg.textContent = '';
+
+      // Basic validation
+      var name = document.getElementById('name').value.trim();
+      var company = document.getElementById('company').value.trim();
+      var email = document.getElementById('email').value.trim();
+      if(!name || !company || !email){
+        msg.className = 'form-message error';
+        msg.textContent = 'Please fill in your name, company, and email.';
+        return;
+      }
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+        msg.className = 'form-message error';
+        msg.textContent = 'Please enter a valid email address.';
+        return;
+      }
+
+      // Gather data
+      var data = {
+        name: name,
+        company: company,
+        role: document.getElementById('role').value.trim(),
+        email: email,
+        company_size: (document.querySelector('input[name="company_size"]:checked') || {}).value || '',
+        industry: (document.querySelector('input[name="industry"]:checked') || {}).value || '',
+        industry_other: document.getElementById('industry_other').value.trim(),
+        tools: Array.from(document.querySelectorAll('input[name="tools"]:checked')).map(function(c){ return c.value; }),
+        tools_other: document.getElementById('tools_other').value.trim(),
+        biggest_time_sink: document.getElementById('biggest_time_sink').value.trim(),
+        wasted_time: Array.from(document.querySelectorAll('input[name="wasted_time"]:checked')).map(function(c){ return c.value; }),
+        ai_experience: (document.querySelector('input[name="ai_experience"]:checked') || {}).value || '',
+        magic_wand: document.getElementById('magic_wand').value.trim()
+      };
+
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+
+      fetch('https://n8n.802marketing.com/webhook/jeffcheung-ai-intake', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(function(res){
+        if(!res.ok) throw new Error('Server error');
+        return res.json();
+      })
+      .then(function(){
+        window.location.href = 'https://cal.com/jeffcheung';
+      })
+      .catch(function(){
+        msg.className = 'form-message error';
+        msg.textContent = 'Something went wrong. Please try again or email jeff@jeffcheung.ai directly.';
+        btn.disabled = false;
+        btn.innerHTML = 'Submit &amp; Book Your Free Assessment <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>';
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!--
+  jeffcheung.ai — email signature
+  
+  Strategy: media queries for clients that support them (Apple Mail, iOS Mail,
+  Thunderbird, some Gmail/Yahoo).  Fallback inline styles use light neutral 
+  colors that read well on BOTH white and dark backgrounds — critical because
+  Outlook, Gmail, and many mobile clients force dark mode by inverting colors
+  unpredictably.
+  
+  Fallback palette (inline):
+    Name:    #E8E8EC (light gray — visible on dark bg, readable on white)
+    Title:   #A0A0A8 (mid gray — works everywhere)
+    Link:    #2DD4BF (teal — pops on both)
+    Divider: #555555 (neutral mid — won't disappear on either bg)
+  
+  Media query palette (light mode override):
+    Name:    #14171A (dark ink)
+    Title:   #6B7178 (muted)
+    Link:    #1F6E66 (brand teal, darker for contrast on white)
+    Divider: #DCDBD5 (light)
+  
+  Table-based + inline styles on purpose.  Outlook desktop uses Word's
+  rendering engine: no flexbox, no grid, no external stylesheets, no
+  webfonts, no media queries.  Don't "clean this up" into flex.
+  
+  Replace SIGNATURE_MARK_URL with hosted URL of signature-mark-104.png
+  (e.g. https://jeffcheung.ai/assets/signature-mark-104.png).
+-->
+<style>
+  @media (prefers-color-scheme: light) {
+    .sig-name { color: #14171A !important; }
+    .sig-title { color: #6B7178 !important; }
+    .sig-link { color: #1F6E66 !important; }
+    .sig-dot { color: #C8C7C1 !important; }
+    .sig-loc { color: #6B7178 !important; }
+    .sig-divider div { background-color: #DCDBD5 !important; }
+  }
+</style>
+<table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, Helvetica, sans-serif;">
+  <tr>
+    <td>
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td style="width: 52px; padding-right: 16px;" valign="middle">
+            <img src="SIGNATURE_MARK_URL" width="52" height="52" alt="jc" style="display: block; border: 0; border-radius: 12px;">
+          </td>
+          <td class="sig-divider" style="width: 1px; padding-right: 16px;" valign="middle">
+            <div style="width: 1px; height: 44px; background-color: #555555; font-size: 0; line-height: 0;">&nbsp;</div>
+          </td>
+          <td valign="middle">
+            <div class="sig-name" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #E8E8EC;">Jeff Cheung</div>
+            <div class="sig-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #A0A0A8; padding-top: 2px;">AI Consultant</div>
+            <div style="font-family: monospace; font-size: 12px; padding-top: 4px;">
+              <a href="https://jeffcheung.ai" class="sig-link" style="color: #2DD4BF; text-decoration: none;">jeffcheung.ai</a>
+              <span class="sig-dot" style="color: #666666;"> &middot; </span>
+              <span class="sig-loc" style="color: #A0A0A8;">Vermont, US</span>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
