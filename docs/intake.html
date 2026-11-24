@@ -174,7 +174,7 @@
         <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 8.002-4.248Z"/></svg>
         <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
       </button>
-      <a href="#intake-form" class="nav-cta">Book a Call</a>
+      <a href="https://book.jeffcheung.ai/jeffcheung/free-assessment" class="nav-cta">Book a Call</a>
     </div>
   </div></nav>
   <div class="page">
@@ -304,7 +304,7 @@
         </div>
 
         <button type="submit" class="submit-btn" id="submit-btn">
-          Request Your Free Assessment
+          Submit &amp; Book Your Free Assessment
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
         </button>
         <div class="form-message" id="form-message"></div>
@@ -411,16 +411,13 @@
         return res.json();
       })
       .then(function(){
-        Array.prototype.forEach.call(document.getElementById('intake-form').children, function(el){ if(el !== msg) el.style.display = 'none'; });
-        msg.className = 'form-message success';
-        msg.textContent = 'Thanks, ' + name + '! Your answers are in. I\'ll email you at ' + email + ' to schedule your free assessment.';
-        msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        window.location.href = 'https://book.jeffcheung.ai/jeffcheung/free-assessment?name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email);
       })
       .catch(function(){
         msg.className = 'form-message error';
         msg.textContent = 'Something went wrong. Please try again or email jeff@jeffcheung.ai directly.';
         btn.disabled = false;
-        btn.innerHTML = 'Request Your Free Assessment <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>';
+        btn.innerHTML = 'Submit &amp; Book Your Free Assessment <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>';
       });
     });
   </script>
