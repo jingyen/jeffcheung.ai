@@ -2,6 +2,20 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5SRRMRXR');</script>
+  <!-- End Google Tag Manager -->
+  <script>
+    // Booking-link clicks (book.jeffcheung.ai is a separate domain, so record the outbound click here)
+    document.addEventListener('click', function(e){
+      var a = e.target.closest && e.target.closest('a[href*="book.jeffcheung.ai"]');
+      if (a) (window.dataLayer = window.dataLayer || []).push({event: 'book_call_click', link_text: (a.textContent || '').trim().slice(0, 60)});
+    });
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Assessment | jeffcheung.ai</title>
   <meta name="description" content="Take the AI Assessment from Jeff Cheung. 2 minutes to help us skip the basics and get straight to what matters for your business.">
@@ -165,6 +179,10 @@
   </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5SRRMRXR"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
   <div class="glow-wrap"><div class="glow-orb a"></div><div class="glow-orb b"></div></div>
   <nav><div class="container">
     <a href="index.html" class="nav-wordmark">jeffcheung<span class="ai">.ai</span></a>
@@ -420,6 +438,7 @@
         return res.json();
       })
       .then(function(){
+        (window.dataLayer = window.dataLayer || []).push({event: 'intake_submitted'});
         window.location.href = 'https://book.jeffcheung.ai/jeffcheung/free-assessment?name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email) + '&website=' + encodeURIComponent(website);
       })
       .catch(function(){
