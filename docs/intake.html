@@ -209,6 +209,12 @@
               <input type="email" id="email" name="email" required placeholder="jane@acme.com">
             </div>
           </div>
+          <div class="input-row" style="margin-top:12px;">
+            <div class="input-col">
+              <label for="website">Business website</label>
+              <input type="text" id="website" name="website" required placeholder="acme.com" autocomplete="url" inputmode="url">
+            </div>
+          </div>
         </div>
 
         <!-- Q2: Company size -->
@@ -370,9 +376,11 @@
       var name = document.getElementById('name').value.trim();
       var company = document.getElementById('company').value.trim();
       var email = document.getElementById('email').value.trim();
-      if(!name || !company || !email){
+      var website = document.getElementById('website').value.trim();
+      if(website && !/^https?:\/\//i.test(website)) website = 'https://' + website;
+      if(!name || !company || !email || !website){
         msg.className = 'form-message error';
-        msg.textContent = 'Please fill in your name, company, and email.';
+        msg.textContent = 'Please fill in your name, company, email, and website.';
         return;
       }
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
@@ -387,6 +395,7 @@
         company: company,
         role: document.getElementById('role').value.trim(),
         email: email,
+        website: website,
         company_size: (document.querySelector('input[name="company_size"]:checked') || {}).value || '',
         industry: (document.querySelector('input[name="industry"]:checked') || {}).value || '',
         industry_other: document.getElementById('industry_other').value.trim(),
@@ -411,7 +420,7 @@
         return res.json();
       })
       .then(function(){
-        window.location.href = 'https://book.jeffcheung.ai/jeffcheung/free-assessment?name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email);
+        window.location.href = 'https://book.jeffcheung.ai/jeffcheung/free-assessment?name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email) + '&website=' + encodeURIComponent(website);
       })
       .catch(function(){
         msg.className = 'form-message error';
