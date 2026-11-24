@@ -13,12 +13,13 @@
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-WNPHW327');</script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}</script>
   <!-- End Google Tag Manager -->
   <script>
     // Booking-link clicks (book.jeffcheung.ai is a separate domain, so record the outbound click here)
     document.addEventListener('click', function(e){
       var a = e.target.closest && e.target.closest('a[href*="book.jeffcheung.ai"]');
-      if (a) (window.dataLayer = window.dataLayer || []).push({event: 'book_call_click', link_text: (a.textContent || '').trim().slice(0, 60)});
+      if (a) { var t = (a.textContent || '').trim().slice(0, 60); dataLayer.push({event: 'book_call_click', link_text: t}); gtag('event', 'book_call_click', {link_text: t, transport_type: 'beacon'}); }
     });
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -367,7 +368,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           method:'POST', headers:{'Content-Type':'application/json'},
           body:JSON.stringify({store_url:url,email:email,platform:platform,page:location.href,referrer:document.referrer||''})
         }).then(function(r){ if(!r.ok) throw new Error('server'); return r.json(); })
-          .then(function(){ (window.dataLayer=window.dataLayer||[]).push({event:'scan_submitted', platform:platform}); form.style.display='none'; document.getElementById('success').style.display='block'; })
+          .then(function(){ dataLayer.push({event:'scan_submitted', platform:platform}); gtag('event','scan_submitted',{platform:platform}); form.style.display='none'; document.getElementById('success').style.display='block'; })
           .catch(function(){
             msg.className='form-msg error';
             msg.innerHTML='Something went wrong. Email your store URL to <a href="mailto:jeff@jeffcheung.ai?subject=BFCM%20scan">jeff@jeffcheung.ai</a> and I\'ll scan it.';
